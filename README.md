@@ -1,6 +1,10 @@
-# jquery-mask-o
+# jQuery-mask-o
 
-Very simple jQuery overlay mask plugin.
+A lightweight jQuery overlay mask plugin ideal for masking elements while they are loading or being updated.
+
+jQuery-mask-o is small, weighing in at less than 0.5kb (minified & gzipped).
+
+http://danny-mcc.github.io/jquery-mask-o/
 
 
 ## Example Usage
