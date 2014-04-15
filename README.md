@@ -15,7 +15,7 @@ Use the plugin as follows:
 
 Mask an element.
 ```js
-var options {
+var options = {
      image        : 'loader.gif', // Overlay image
      opacity      : 0.5,          // Overlay opacity
      color        : '#FFF',       // Overlay colour
