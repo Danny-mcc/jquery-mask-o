@@ -15,7 +15,8 @@
 			} else {
 				maskDiv
 					.css('background', 	settings.color + ' url(' + settings.image + ') no-repeat center center')
-					.css('opacity', 	settings.opacity);
+					.css('opacity', 	settings.opacity)
+					.css('zIndex', 		settings.zIndex);
 			}
 
 			maskDiv
