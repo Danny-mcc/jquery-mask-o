@@ -1,10 +1,10 @@
 (function($) {
 
-    $.fn.masko = function(settings) {
+	$.fn.masko = function(settings, callback) {
 
 		settings = $.extend({}, $.fn.masko.settings, settings || {});
 
-		return this.each(function() {
+		this.each(function() {
 
 			var maskedDiv = $(this);
 			var maskDiv = $(document.createElement('div')).addClass('mask-o');
@@ -16,7 +16,7 @@
 				maskDiv
 					.css('background', 	settings.color + ' url(' + settings.image + ') no-repeat center center')
 					.css('opacity', 	settings.opacity)
-					.css('zIndex', 		settings.zIndex);
+					.css('zIndex',		settings.zIndex);
 			}
 
 			maskDiv
@@ -26,13 +26,12 @@
 				.css('height', 		maskedDiv.height())
 				.css('width',		maskedDiv.width());
 
-
 			$('body').append(maskDiv);
 
 			maskedDiv.one('unmasko', function() {
 				maskDiv.remove();
 			});
-			
+
 			// Resize & reposition mask with window
 			$(window).resize(function() {
 				maskDiv
@@ -42,24 +41,39 @@
 					.css('width',	maskedDiv.width());
 			});
 
-		});        
-  
+		});
 
-    }
+		// Fire Callback
+		if (typeof callback == 'function') {
+			callback.call(this);
+		}
 
-    $.fn.unmasko = function() {
-		return this.each(function() {
+		return this;
+
+	}
+
+	$.fn.unmasko = function(callback) {
+
+		this.each(function() {
 			$(this).triggerHandler('unmasko');
-        });
-    }
+		});
 
-    // Default Settings
+		// Fire Callback
+		if (typeof callback == 'function') {
+			callback.call(this);
+		}
+
+		return this;
+
+	}
+
+	// Default Settings
 	$.fn.masko.settings = {
-        image		: 'loader.gif',
-        opacity		: 0.5,
-        color		: '#FFF',
-        zIndex		: 50,
-        customClass	: false
-    };
+		image		: 'loader.gif',
+		opacity		: 0.5,
+		color		: '#FFF',
+		zIndex		: 50,
+		customClass	: false
+	};
 
 }(jQuery));
