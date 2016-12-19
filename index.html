@@ -84,14 +84,14 @@
 					</tr>
 				</tbody>
 			</table>
-			<div class"text-center">
+			<div class="text-center">
 				<button class="btn btn-xs reload-all"><i class="fa fa-refresh"></i> Reload All</button>
 			</div>
       	</div>
       </div>
 
       <div class="footer text-center">
-        <p><small>&copy; Copyright Dan McConaghey 2014.</small></p>
+        <p><small>&copy; Copyright Dan McConaghey 2016.</small></p>
       </div>
 
     </div> <!-- /container -->
@@ -100,20 +100,33 @@
     $(document).ready(function(){
     	$('.reload').click(function(){
 
-    		that = $(this).closest('tr').masko({ customClass: 'sm-loader' });
-    		
-    		setTimeout(function(){
-		        that.unmasko();
-		    }, 1000);
+    		$(this).closest('tr').masko({ customClass: 'sm-loader' }, function(){
+
+				console.log('masked...');
+
+				var that = this;
+
+				setTimeout(function(){
+					that.unmasko(console.log('unmasked...'));
+				}, 1000);
+
+			});
 
     	});
+
     	$('.reload-all').click(function(){
 
-    		$('table').masko();
-    		
-    		setTimeout(function(){
-		        $('table').unmasko();
-		    }, 1000);
+    		$('table').masko({}, function(){
+
+				console.log('masked...');
+
+				var that = this;
+
+				setTimeout(function(){
+					that.unmasko(console.log('unmasked...'));
+				}, 1000);
+
+			});
 
     	});
     });
